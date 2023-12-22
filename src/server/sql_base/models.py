@@ -6,6 +6,12 @@ class BaseModelModify(BaseModel):
     id: Optional[int]
 
 
+class Dishes(BaseModelModify):
+    pass
+
+class Client(BaseModelModify):
+    pass
+
 class BeautySalon(BaseModel):
     customer_id: int
     fio_customers: str

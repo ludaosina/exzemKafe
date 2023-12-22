@@ -2,7 +2,7 @@ from settings import SQL_BASE, SERVER_HOST, SERVER_PORT
 
 import sys
 
-sys.path.append('C:/Demo_exam2/')
+sys.path.append('C:/exzemkafe/')
 
 from src.server.sql_base.kafe_db import base_worker
 from fastapi import FastAPI
@@ -12,7 +12,7 @@ from fastapi.responses import RedirectResponse
 
 base_worker.create_base(SQL_BASE)
 
-app = FastAPI(title='SalonKrasotu', version='Alpha 0.1')
+app = FastAPI(title='SalonKrasoti', version='Alpha 0.1')
 
 
 @app.get("/")

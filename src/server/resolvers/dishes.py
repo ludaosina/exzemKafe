@@ -6,7 +6,7 @@ def create(dishes: Dishes):
     return base_worker.execute(query="INSERT INTO dishes(category_id, order_id, name, description, price) VALUES (?, ?, ?, ?, ?) RETURNING id",
                                args=(dishes.category_id, dishes.order_id, dishes.name, dishes.description, dishes.price))
 
-
+    
 def get(dishes_id: int):
     return base_worker.execute(query="SELECT * FROM dishes WHERE id = ?",
                                args=(dishes_id,))
