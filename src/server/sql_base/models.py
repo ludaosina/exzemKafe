@@ -6,74 +6,46 @@ class BaseModelModify(BaseModel):
     id: Optional[int]
 
 
-class Dishes(BaseModelModify):
-    pass
-
-class Client(BaseModelModify):
-    pass
-
-class BeautySalon(BaseModel):
-    customer_id: int
-    fio_customers: str
-    quantity: int
-    service: str
-
-class Employee(BaseModel):
+class Users(BaseModel):
     id: int
-    fio: str
-    address: str
-    sale_of_cosmetics: bool
-    number: str
-    experience: int
+    login: str
+    password: str
+
+class Staff(BaseModel):
+    id: int
+    users_id: int
+    post_id: int
+    name: str
+    surname: str
+
+class Post(BaseModel):
+    id: int
+    name: str
+
+class DishCategories(BaseModel):
+    id: int
+    name: str
+
+class Dishes(BaseModel):
+    id: int
+    category_id: int
+    name: str
+    description: str
+    price: float
+
+class Orders(BaseModel):
+    id: int
+    customer_id: int
+    date: str
+    total_cost: float
 
 class Customer(BaseModel):
     id: int
-    fio: str
+    name: str
+    surname: str
     address: str
     number: str
 
-class SaleOfCosmetics(BaseModel):
-    id: int
-    client: str
-    date_of_purchase: str
-    quantity: int
-    cost_per_piece: float
-    total_cost: float
 
-class Cosmetic(BaseModel):
-    id: int
-    title: str
-    cost: float
-
-class CategoryOfEmployees(BaseModel):
-    id: int
-    chart: str
-    post: str
-
-class Procedure(BaseModel):
-    id: int
-    title: str
-    cost: float
-
-class Services(BaseModel):
-    id: int
-    cost: float
-    date: str
-    masters: List[Employee]
-
-class Records(BaseModel):
-    id: int
-    client_id: int
-    employee_id: int
-    procedure_id: int
-    appointment_date: str
-    appointment_time: str
-
-class Review(BaseModel):
-    id: int
-    client_id: int
-    employee_id: int
-    rating: int
-    comment: str
 
 

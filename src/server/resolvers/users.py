@@ -1,27 +1,27 @@
 from src.server.sql_base.kafe_db import base_worker
-from src.server.sql_base.models import Cosmetic
+from src.server.sql_base.models import Users
 
 
-def create(cosmetic: Cosmetic):
-    return base_worker.execute(query="INSERT INTO cosmetic(title, cost) VALUES (?, ?) RETURNING id",
-                               args=(cosmetic.title, cosmetic.cost))
+def create(users: Users):
+    return base_worker.execute(query="INSERT INTO users(id, login, password) VALUES (?, ?, ?) RETURNING id",
+                               args=(users.id, users.login, users.password))
 
 
-def get(cosmetic_id: int):
-    return base_worker.execute(query="SELECT * FROM cosmetic WHERE id = ?",
-                               args=(cosmetic_id,))
+def get(users_id: int):
+    return base_worker.execute(query="SELECT * FROM users WHERE id = ?",
+                               args=(users_id,))
 
 
 def get_all():
-    return base_worker.execute(query="SELECT * FROM cosmetic",
+    return base_worker.execute(query="SELECT * FROM users",
                                many=True)
 
 
-def update(cosmetic_id: int, new_data: Cosmetic):
-    return base_worker.execute(query="UPDATE cosmetic SET (title, cost) = (?,?) WHERE id=?",
-                               args=(new_data.title, new_data.cost, cosmetic_id))
+def update(users_id: int, new_data: Users):
+    return base_worker.execute(query="UPDATE users SET (id, login, password) = (?,?,?) WHERE id=?",
+                               args=(new_data.id, new_data.login, new_data.password, users_id))
 
 
-def delete(cosmetic_id: int):
-    return base_worker.execute(query="DELETE FROM cosmetic WHERE id=? ",
-                               args=(cosmetic_id,))
+def delete(users_id: int):
+    return base_worker.execute(query="DELETE FROM users WHERE id=? ",
+                               args=(users_id,))

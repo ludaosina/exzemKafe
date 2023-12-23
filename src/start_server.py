@@ -12,7 +12,7 @@ from fastapi.responses import RedirectResponse
 
 base_worker.create_base(SQL_BASE)
 
-app = FastAPI(title='SalonKrasoti', version='Alpha 0.1')
+app = FastAPI(title='kafe', version='Alpha 0.1')
 
 
 @app.get("/")

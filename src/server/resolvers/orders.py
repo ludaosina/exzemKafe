@@ -1,27 +1,27 @@
-from server.sql_base.pharmacy_db import base_worker
-from server.sql_base.models import List
+from src.server.sql_base.kafe_db import base_worker
+from src.server.sql_base.models import Orders
 
 
-def create_list(list: List):
-    return base_worker.execute(query="INSERT INTO list(pharmacy_id, medicines_id) VALUES (?, ?) RETURNING id",
-                               args=(list.pharmacy_id, list.medicines_id))
+def create(orders: Orders):
+    return base_worker.execute(query="INSERT INTO orders(id, customer_id, date, total_cost) VALUES (?, ?, ?, ?) RETURNING id",
+                               args=(orders.id, orders.customer_id, orders.date, orders.total_cost))
 
 
-def get_list(list_id: int):
-    return base_worker.execute(query="SELECT id, pharmacy_id, medicines_id FROM list WHERE id = ?",
-                               args=(list_id,))
+def get(orders_id: int):
+    return base_worker.execute(query="SELECT * FROM orders WHERE id = ?",
+                               args=(orders_id,))
 
 
-def get_all_list():
-    return base_worker.execute(query="SELECT id, pharmacy_id, medicines_id FROM list",
+def get_all():
+    return base_worker.execute(query="SELECT * FROM orders",
                                many=True)
 
 
-def update_list(list_id: int, new_data: List):
-    return base_worker.execute(query="UPDATE list SET pharmacy_id=?, medicines_id=? WHERE id=?",
-                               args=(new_data.pharmacy_id, new_data.medicines_id, list_id))
+def update(orders_id: int, new_data: Orders):
+    return base_worker.execute(query="UPDATE orders SET (id, customer_id, date, total_cost) = (?, ?, ?, ?) WHERE id=?",
+                               args=(new_data.id, new_data.customer_id, new_data.date, new_data.total_cost, orders_id))
 
 
-def delete_list(list_id: int):
-    return base_worker.execute(query="DELETE FROM list WHERE id=? ",
-                               args=(list_id,))
+def delete(orders_id: int):
+    return base_worker.execute(query="DELETE FROM orders WHERE id=? ",
+                               args=(orders_id,))

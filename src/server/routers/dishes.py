@@ -1,35 +1,35 @@
 import fastapi
-from server.sql_base.models import Client
-from server.resolvers.client import create_client, get_client, delete_client, update_client, get_all_client
+from src.server.sql_base.models import Dishes
+from src.server.resolvers.dishes import create, get, delete, update, get_all
 
-client_router = fastapi.APIRouter(prefix="/client", tags=["Client"])
+router = fastapi.APIRouter(prefix="/dishes", tags=["Dishes"])
 
 
-@client_router.get("/")
+@router.get("/")
 def start_page():
     return ""
 
 
-@client_router.post("/create/")
-def new_client(client: Client):
-    return create_client(client)
+@router.post("/create/")
+def new_dishes(dishes: Dishes):
+    return create(dishes)
 
 
-@client_router.get("/get/{client_id}")
-def search_client(client_id: int):
-    return get_client(client_id)
+@router.get("/get/{dishes_id}")
+def search_dishes(dishes_id: int):
+    return get(dishes_id)
 
 
-@client_router.get("/get/")
-def search_all_clients():
-    return get_all_client()
+@router.get("/get/")
+def search_all_dishes():
+    return get_all()
 
 
-@client_router.put("/update/{client_id}")
-def upd_client(client_id: int, new_data: Client):
-    return update_client(client_id, new_data)
+@router.put("/update/{dishes_id}")
+def upd_dishes(dishes: int, new_data: Dishes):
+    return update(dishes_id, new_data)
 
 
-@client_router.delete("/delete/{client_id}")
-def del_client(client_id: int):
-    return delete_client(client_id)
+@router.delete("/delete/{dishes_id}")
+def del_dishes(dishes_id: int):
+    return delete(dishes_id)
